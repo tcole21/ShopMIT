@@ -1,0 +1,137 @@
+<!Doctype html>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'MITReportInterface/css/bootstrap.css' %}">
+<script src="{% static 'MITReportInterface/js/bootstrap.js' %}"></script>
+
+
+
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8" />
+        <title>Report View Page</title>
+    </head>
+
+    <body style="background-color: #000000; height: fit-content;">
+        <nav class="navbar" data-bs-theme="dark" style="background-color: #750014;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="https://web.mit.edu">
+                    <img src="{% static 'MITReportInterface/img/mit_logo_std_rgb_white.png' %}" width="64" height="32" alt="MIT logo">
+                    Massachusetts Institute of Technology
+                </a>
+            </div>
+        </nav>
+
+        
+
+        <div style="background-color: #ffffff;">
+            
+            <div class="container" style="padding-bottom: 325px; padding-top: 100px;">
+                <form class="mb-3" action="{% url 'MITReportInterface:downloadReport' %}">
+                    <input type="submit" value="export to CSV"> 
+                </form>
+
+                    <div id="scrollable" style="overflow: auto; height: 500px;">
+                        <table class="table table-bordered table-striped table-sm" style="display: block; position: relative;">
+                            <thead style="height: 100%;">
+                                <tr>
+                                    {% for k in ReportHeaders %} 
+                                <th style="width: 100%; position: sticky; top: 0%;" nowrap="nowrap">               
+                                    {{k}}
+                                </th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                {% for R in Requests%}
+                                <tr style="height: 100%;">
+                                        {% for k,v in R.items %}
+                                    <td>
+                                        {{v}}
+                                    </td>
+                                        {% endfor %}
+                                </tr>
+
+                                <tr style="height: 100%;">
+                                    {% for k,v in R.items %}
+                                <td>
+                                    {{v}}
+                                </td>
+                                    {% endfor %}
+                                </tr>
+
+                                <tr style="height: 100%;">
+                                    {% for k,v in R.items %}
+                                <td>
+                                    {{v}}
+                                </td>
+                                    {% endfor %}
+                                </tr>
+
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                
+            </div>
+                
+            <div class="container">
+                {{Error_Report}}
+            </div>
+        </div>
+        
+        <footer style="color: #ffffff;">
+            <div class="container-fluid pt-5 mx-5">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="pt-3 px-4">
+                            <a href="https://mit.edu">
+                                <img src="{% static 'MITReportInterface/img/mit_lockup_std-three-line_rgb_white.png' %}" width="auto" height="40" alt="MIT logo">
+                            </a>
+                        </div>
+                        
+                        <div class="pt-2 px-4">
+                            <p>
+                                77 Massachusetts Ave, Cambridge, MA
+                            </p>
+                        </div>
+                       
+
+                        <div class="pt-5 pb-3 px-4">
+                            <a href="https://accessibility.mit.edu" class="link-light">Accessibility</a> 
+                             | 
+                            <a href="https://web.mit.edu/privacy/" class="link-light"> Privacy Statement</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+       
+        <script>
+            container = document.getElementById('scrollable')
+            function ensureScrollVisible() {
+                if (container.scrollTop === 0) {
+                    container.scrollTop += 1
+                    container.scrollTop -= 1
+                } else {
+                    container.scrollTop -= 1
+                    container.scrollTop += 1
+                }
+
+                if (container.scrollLeft === 0) {
+                    container.scrollLeft += 1
+                    container.scrollLeft -= 1
+                } else {
+                    container.scrollLeft -= 1
+                    container.scrollLeft += 1
+                }
+            }
+            ensureScrollVisible()
+            setInterval(ensureScrollVisible, 250)
+           
+        </script>
+
+    </body>
+</html>

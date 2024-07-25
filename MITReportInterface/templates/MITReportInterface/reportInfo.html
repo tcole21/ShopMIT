@@ -1,0 +1,105 @@
+<!Doctype html>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'MITReportInterface/css/bootstrap.css' %}">
+<script src="{% static 'MITReportInterface/js/bootstrap.js' %}"></script>
+
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8" />
+        <title>Report Information Page</title>
+    </head>
+
+    <body style="min-height: 100%; background-color: #000000;" >
+        <nav class="navbar" data-bs-theme="dark" style="background-color: #750014;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="https://web.mit.edu">
+                    <img src="{% static 'MITReportInterface/img/mit_logo_std_rgb_white.png' %}" width="64" height="32" alt="MIT logo">
+                    Massachusetts Institute of Technology
+                </a>
+            </div>
+        </nav>
+        
+        <div style="background-color: #ffffff;">
+                <div class="container" style="padding: 185px;" >
+                <div class="row justify-content-md-center">
+                    <div class="col-lg-6">
+                        <h2>Cybersource</h2>
+                        <p>Enterprise Business Center Reports</p>
+                    </div>
+                    
+                </div>
+                <div class="row justify-content-md-center pb-5">
+                    <div class="col-lg-6">
+                        merchant ID: {{merchantID}}
+                    </div>
+                </div>
+
+
+                <div class="row justify-content-md-center">
+                    <div class="col-lg-6">
+
+                        <form name="date-form" class="form-horizontal" action="{% url 'MITReportInterface:reportView' %}">
+                            <fieldset>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td> Start Date</td>
+                                                <td> End Date</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td>
+                                                    <input type="date" class="form-control" name="start_date" required>
+                                                </td>
+
+                                                <td>
+                                                    <input type="date" class="form-control" name="end_date" required>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <input type="hidden" value="{{merchantID}}" class="form-control" name="merchant_ID" required>
+                                </div>
+                                
+                                <input type="submit" value="load" class="btn btn-primary">  
+                            </fieldset>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <footer style="color: #ffffff;">
+            <div class="container-fluid pt-5 mx-5">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="pt-3 px-4">
+                            <a href="https://mit.edu">
+                                <img src="{% static 'MITReportInterface/img/mit_lockup_std-three-line_rgb_white.png' %}" width="166" height="36" alt="MIT logo">
+                            </a>
+                        </div>
+                        
+                        <div class="pt-2 px-4">
+                            <p>
+                                77 Massachusetts Ave, Cambridge, MA
+                            </p>
+                        </div>
+                       
+
+                        <div class="pt-5 pb-3 px-4">
+                            <a href="https://accessibility.mit.edu" class="link-light">Accessibility</a> 
+                             | 
+                            <a href="https://web.mit.edu/privacy/" class="link-light"> Privacy Statement</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+    </body>
