@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, FileResponse
 from django.template import loader
-#from MITReportInterface.getReports import reportLoader
+from .reportDownload import process_get
 import csv
 import os
 import xmltodict
@@ -37,36 +37,32 @@ def reportViewer(request):
     endDate = request.GET['end_date']
     merchant_ID = request.GET['merchant_ID']
 
-    downloadedFilePath = os.path.join(os.getcwd(), "resources", "download_report.csv")
-    #downloadStatus = reportLoader.download_report(merchant_ID, endDate)
+    downloadStatus, reportDict = process_get()
+
 
     if downloadStatus == 200:
-        with open(downloadedFilePath) as report:
-            reportString = report.read()
-            reportDict = xmltodict.parse(reportString)
-
-            if reportDict['Report']['Requests'] is not None:
-                for req in reportDict['Report']['Requests']['Request']:
-                    currentRequest = {}
-                    currentRequest.update(getMerchantInfo(reportDict['Report']))
-                    currentRequest.update(getRequestInfo(req))
-                    currentRequest.update(getBillingInfo(req['BillTo']))
-                    currentRequest.update(getShippingInfo(req['ShipTo']))
-                    #currentRequest.update(getCardInfo(req['PaymentMethod']['Card']))
-                    currentRequest.update(getCardInfo(req.get('PaymentMethod').get('Card')))
-                    currentRequest.update(getLineItems(req['LineItems']['LineItem']))
-                    context['Requests'].append(currentRequest)
-                    context['ReportHeaders'] = list(currentRequest.keys())
-            else:
+        if reportDict['Report']['Requests'] is not None:
+            for req in reportDict['Report']['Requests']['Request']:
                 currentRequest = {}
                 currentRequest.update(getMerchantInfo(reportDict['Report']))
-                currentRequest.update(getRequestInfo({}))
-                currentRequest.update(getBillingInfo({}))
-                currentRequest.update(getShippingInfo({}))
-                currentRequest.update(getCardInfo({}))
-                currentRequest.update(getLineItems({}))
+                currentRequest.update(getRequestInfo(req))
+                currentRequest.update(getBillingInfo(req['BillTo']))
+                currentRequest.update(getShippingInfo(req['ShipTo']))
+                #currentRequest.update(getCardInfo(req['PaymentMethod']['Card']))
+                currentRequest.update(getCardInfo(req.get('PaymentMethod').get('Card')))
+                currentRequest.update(getLineItems(req['LineItems']['LineItem']))
                 context['Requests'].append(currentRequest)
                 context['ReportHeaders'] = list(currentRequest.keys())
+        else:
+            currentRequest = {}
+            currentRequest.update(getMerchantInfo(reportDict['Report']))
+            currentRequest.update(getRequestInfo({}))
+            currentRequest.update(getBillingInfo({}))
+            currentRequest.update(getShippingInfo({}))
+            currentRequest.update(getCardInfo({}))
+            currentRequest.update(getLineItems({}))
+            context['Requests'].append(currentRequest)
+            context['ReportHeaders'] = list(currentRequest.keys())
 
         for i, req in enumerate(context['Requests']):
             for attribute in req.keys():

@@ -1,8 +1,8 @@
 <!Doctype html>
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'MITReportInterface/css/bootstrap.css' %}">
-<script src="{% static 'MITReportInterface/js/bootstrap.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<script src="{% static 'js/bootstrap.js' %}"></script>
 
 
 
@@ -16,7 +16,7 @@
         <nav class="navbar" data-bs-theme="dark" style="background-color: #750014;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="https://web.mit.edu">
-                    <img src="{% static 'MITReportInterface/img/mit_logo_std_rgb_white.png' %}" width="64" height="32" alt="MIT logo">
+                    <img src="{% static 'img/mit_logo_std_rgb_white.png' %}" width="64" height="32" alt="MIT logo">
                     Massachusetts Institute of Technology
                 </a>
             </div>
@@ -53,22 +53,6 @@
                                         {% endfor %}
                                 </tr>
 
-                                <tr style="height: 100%;">
-                                    {% for k,v in R.items %}
-                                <td>
-                                    {{v}}
-                                </td>
-                                    {% endfor %}
-                                </tr>
-
-                                <tr style="height: 100%;">
-                                    {% for k,v in R.items %}
-                                <td>
-                                    {{v}}
-                                </td>
-                                    {% endfor %}
-                                </tr>
-
                                 {% endfor %}
                             </tbody>
                         </table>
@@ -87,7 +71,7 @@
                     <div class="col-lg-6">
                         <div class="pt-3 px-4">
                             <a href="https://mit.edu">
-                                <img src="{% static 'MITReportInterface/img/mit_lockup_std-three-line_rgb_white.png' %}" width="auto" height="40" alt="MIT logo">
+                                <img src="{% static 'img/mit_lockup_std-three-line_rgb_white.png' %}" width="auto" height="40" alt="MIT logo">
                             </a>
                         </div>
                         
