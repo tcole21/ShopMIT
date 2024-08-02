@@ -74,14 +74,9 @@ def reportViewer(request):
 
     return HttpResponse(template.render(context, request))
 
-
-
 def downloadReport(request):
-    download_file_path = os.path.join(os.getcwd(), "resources", "download_report.csv")
+    pass
 
-    context = {}
-    response = FileResponse(open(download_file_path, 'rb'))
-    return response
 
 
 # Helper Function To extract merchant info from report
