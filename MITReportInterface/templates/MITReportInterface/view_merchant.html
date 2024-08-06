@@ -1,0 +1,51 @@
+{% extends 'MITReportInterface/base.html' %}
+
+{% block title %}View Merchant{% endblock %}
+
+{% block content %}
+<h1>View Merchant</h1>
+<h2><button type="button" class="btn btn-secondary" onclick="location.href='{% url 'MITReportInterface:home' %}'">Return to Home</button></h2>
+<h3><button type="button" class="btn btn-secondary" onclick="location.href='{% url 'MITReportInterface:list_merchants' %}'">Return to List</button></h3>
+<table class="table table-bordered">
+    <tr>
+        <th>Merchant ID</th>
+        <td>{{ merchant.id }}</td>
+    </tr>
+    <tr>
+        <th>Disabled</th>
+        <td>{{ merchant.disabled }}</td>
+    </tr>
+    <tr>
+        <th>Cancellation Date</th>
+        <td>{{ merchant.cancellation_date }}</td>
+    </tr>
+    <tr>
+        <th>Secure Acceptance Status</th>
+        <td>{{ merchant.secure_acceptance_status }}</td>
+    </tr>
+    <tr>
+        <th>Has SA Keys</th>
+        <td>{{ merchant.has_sa_keys }}</td>
+    </tr>
+    <tr>
+        <th>Has P12 Keys</th>
+        <td>{{ merchant.has_p12_keys }}</td>
+    </tr>
+    <tr>
+        <th>Has SOAP Keys</th>
+        <td>{{ merchant.has_soap_keys }}</td>
+    </tr>
+    <tr>
+        <th>Has SCMP Keys</th>
+        <td>{{ merchant.has_scmp_keys }}</td>
+    </tr>
+    <tr>
+        <th>Notes</th>
+        <td>{{ merchant.notes }}</td>
+    </tr>
+</table>
+<a href="{% url 'MITReportInterface:list_merchants' %}" class="btn btn-secondary">Back to List</a>
+{% endblock %}
+{% block extra_buttons %}
+<button type="button" class="btn btn-secondary" onclick="location.href='{% url 'MITReportInterface:home' %}'">Return to Home</button>
+{% endblock %}

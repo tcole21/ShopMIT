@@ -1,0 +1,31 @@
+{% extends 'MITReportInterface/base.html' %}
+
+{% block title %}Edit Merchant{% endblock %}
+
+{% block content %}
+<h1>Edit Merchant</h1>
+<form method="post">
+    {% csrf_token %}
+    <!-- Example of form fields using Bootstrap 5.3.3 classes -->
+    <div class="mb-3">
+        <label for="merchantName" class="form-label">Merchant Name</label>
+        <input type="text" class="form-control" id="merchantName" name="merchant_name" required>
+    </div>
+    <div class="mb-3">
+        <label for="merchantEmail" class="form-label">Merchant Email</label>
+        <input type="email" class="form-control" id="merchantEmail" name="merchant_email" required>
+    </div>
+    <div class="mb-3">
+        <label for="merchantStatus" class="form-label">Status</label>
+        <select class="form-select" id="merchantStatus" name="merchant_status" required>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+        </select>
+    </div>
+    <!-- Add more form fields as needed -->
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+{% endblock %}
+{% block extra_buttons %}
+<button type="button" class="btn btn-secondary" onclick="location.href='{% url 'MITReportInterface:home' %}'">Return to Home</button>
+{% endblock %}

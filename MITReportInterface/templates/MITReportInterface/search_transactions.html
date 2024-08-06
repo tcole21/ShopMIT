@@ -1,0 +1,88 @@
+{% extends 'MITReportInterface/base.html' %}
+{% load static %}
+
+{% block title %}Search Transactions{% endblock %}
+
+{% block content %}
+<h1>Search Transactions</h1>
+<form method="post" id="searchForm">
+    {% csrf_token %}
+    <div class="buttonRow mb-3">
+        <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'MITReportInterface:home' %}'">Return to Home</button>
+        <button type="submit" id="btnSubmit" class="btn btn-primary ms-2">Search</button>
+    </div>
+    <div class="sectionContainer">
+        <div class="portlet-section-body">
+            <table class="table table-bordered table-sm">
+                <tr>
+                    <th>Merchant</th>
+                    <td>{{ form.merchant_id }}</td>
+                </tr>
+                <tr>
+                    <th>First Name</th>
+                    <td>{{ form.first_name }}</td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td>{{ form.last_name }}</td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <label for="id_start_date">From</label>
+                                {{ form.start_date }}
+                            </div>
+                            <div class="col">
+                                <label for="id_end_date">To</label>
+                                {{ form.end_date }}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Amount</th>
+                    <td>{{ form.amount }}</td>
+                </tr>
+                <tr>
+                    <th>Transactions</th>
+                    <td>{{ form.prod_flag }}</td>
+                </tr>
+                <tr>
+                    <th>Results per page</th>
+                    <td>{{ form.limit }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <input type="hidden" name="page" id="page" value="1">
+    <input type="hidden" name="total_records" id="total_records" value="">
+</form>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .buttonRow {
+        margin-bottom: 15px;
+    }
+    .table th, .table td {
+        padding: .25rem .5rem;
+    }
+    .table th {
+        width: 150px;
+        white-space: nowrap;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/datepicker.min.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $('.calendar').datepicker();
+    });
+</script>
+{% endblock %}

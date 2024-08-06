@@ -1,0 +1,26 @@
+{% extends 'MITReportInterface/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="portlet-font mt-4">
+    <div id="hi1" class="mb-3">
+        <div id="logo" class="fw-bold">Merchant&nbsp;Services</div>
+        <div id="welcome">Welcome Thomas Cole, {{ current_date }}</div>
+    </div>
+    <div id="mid">
+        <div id="nav1"></div>
+        <div id="nav2" class="mb-3">
+            <h2>Merchant Services Administration</h2>
+        </div>
+        <div class="content">
+            <div class="list-group">
+                <a href="{% url 'MITReportInterface:list_merchants' %}" class="list-group-item list-group-item-action">List Merchants</a>
+                <a href="{% url 'MITReportInterface:test_merchant' %}" class="list-group-item list-group-item-action">Test Merchant</a>
+                <a href="{% url 'MITReportInterface:new_merchant' %}" class="list-group-item list-group-item-action">New Merchant</a>
+                <a href="{% url 'MITReportInterface:search_transactions' %}" class="list-group-item list-group-item-action">Search Transactions</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("MITReportInterface/", include('MITReportInterface.urls')),
     path('admin/', admin.site.urls),
+    path('reports/', include('MITReportInterface.urls', namespace='MITReportInterface')),
+    path('', include('MITReportInterface.urls')),
 ]

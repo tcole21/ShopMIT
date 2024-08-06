@@ -1,0 +1,40 @@
+{% extends 'MITReportInterface/base.html' %}
+
+{% block title %}Test Merchant{% endblock %}
+
+{% block content %}
+<h1>Test Merchant</h1>
+<h2><button type="button" class="btn btn-secondary" onclick="location.href='{% url 'MITReportInterface:home' %}'">Return to Home</button></h2>
+<form method="post" novalidate>
+    {% csrf_token %}
+    <div class="form-group">
+        {% for field in form %}
+        <div class="mb-1">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}
+                {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+            </label>
+            {{ field }}
+            {% if field.errors %}
+            <div class="text-danger">{{ field.errors }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .form-control {
+        width: 50%;
+        display: inline-block;
+    }
+    .form-label {
+        width: 50%;
+    }
+</style>
+{% endblock %}
+{% block extra_buttons %}
+<button type="button" class="btn btn-secondary" onclick="location.href='{% url 'MITReportInterface:home' %}'">Return to Home</button>
+{% endblock %}

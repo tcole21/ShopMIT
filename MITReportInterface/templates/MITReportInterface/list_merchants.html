@@ -1,0 +1,53 @@
+{% extends 'MITReportInterface/base.html' %}
+
+{% block title %}List of Merchants{% endblock %}
+
+{% block content %}
+<h1>List of Merchants</h1>
+<h2><button type="button" class="btn btn-secondary" onclick="location.href='{% url 'MITReportInterface:home' %}'">Return to Home</button></h2>
+<table class="table table-bordered table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Actions</th>
+            <th>Merchant ID</th>
+            <th>Disabled</th>
+            <th>Cancellation Date</th>
+            <th>Secure Acceptance Status</th>
+            <th>Has SA Keys</th>
+            <th>Has P12 Keys</th>
+            <th>Has SOAP Keys</th>
+            <th>Has SCMP Keys</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for merchant in merchants %}
+        <tr>
+            <td>
+                <a href="{% url 'MITReportInterface:view_merchant' merchant.id %}" class="btn btn-sm btn-info">View</a>
+            </td>
+            <td>{{ merchant.id }}</td>
+            <td>{{ merchant.disabled }}</td>
+            <td>{{ merchant.cancellation_date }}</td>
+            <td>{{ merchant.secure_acceptance_status }}</td>
+            <td>{{ merchant.has_sa_keys }}</td>
+            <td>{{ merchant.has_p12_keys }}</td>
+            <td>{{ merchant.has_soap_keys }}</td>
+            <td>{{ merchant.has_scmp_keys }}</td>
+            <td>{{ merchant.notes }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block styles %}
+<style>
+    table.table tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+    table.table tbody tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+</style>
+{% endblock %}
