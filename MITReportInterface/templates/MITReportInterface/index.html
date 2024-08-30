@@ -9,7 +9,25 @@
         <meta charset="utf-8" />
         <title>My test page</title>
     </head>
-
+<style>
+    html, body {
+        height: 100%
+        margin: 0;
+    }
+    
+    body {
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff
+    }
+    .content {
+        flex : 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+    }
+</style>
 
 
     <body style="min-height: 100%; background-color: #000000;">
@@ -24,6 +42,9 @@
 
        
         <div style="background-color: white;">
+            <a href="/web/admin/home/" class="btn btn-light position-absolute top-0 end-0 m-3">
+                Go to Merchant Services Admin Homepage
+            </a>
             <div class="container" style="padding: 270px;" >
                 <div class="row justify-content-md-center">
                     <div class="col-lg-8">

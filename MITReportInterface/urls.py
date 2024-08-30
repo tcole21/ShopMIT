@@ -5,7 +5,7 @@ app_name = 'MITReportInterface'
 
 urlpatterns = [
     # ex: /MITReportInterface
-    path("", views.index, name="index"),
+    path("", views.home, name="home"),
 
     # ex: /MITReportInterface/reportInformation
     path("reportInformation/", views.reportInformation, name="reportInformation"),
